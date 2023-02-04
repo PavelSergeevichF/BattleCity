@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fcfb546f0653d41901919bf52dd98d, type: 3}
+  m_Name: SOAudioData
+  m_EditorClassIdentifier: 
+  AudioStart: {fileID: 0}
+  AudioEngineStop: {fileID: 0}
+  AudioEngineGo: {fileID: 0}
+  AudioShoot: {fileID: 0}
+  AudioDamage: {fileID: 0}
+  AudioArmor: {fileID: 0}
+  AudioDestroyPlayer: {fileID: 0}
+  AudioDestroyEnemy: {fileID: 0}
+  AudioGameOver: {fileID: 0}
+  AudioBonus: {fileID: 0}
+  AudioCount: {fileID: 0}
+  AudioGetBonus1: {fileID: 0}
+  AudioGetBonus2: {fileID: 0}
+  AudioGetBonus3: {fileID: 0}
+  AudioGetBonus4: {fileID: 0}

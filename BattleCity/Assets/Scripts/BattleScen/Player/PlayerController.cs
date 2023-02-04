@@ -21,7 +21,7 @@ public class PlayerController : IExecute
         _greedView = greedView;
         _spawnPlayerView = spawnPlayerView;
         SpawnPlayer();
-        _botController = new BotController(_greedView, _player, _playerView.Sprite, _playerView.Speed, _playerView.CentrSpawnView, _playerView.TimePauseShoot, _playerView.SpawnShell);
+        _botController = new BotController(ETypObject.Player, _greedView, _player, _playerView.Sprite, _playerView.Speed, _playerView.CentrSpawnView, _playerView.TimePauseShoot, _playerView.SpawnShell, _spawnPlayerView.AudioSourceView);
         _playerView.TransleteDamage += GetDamage;
     }
 
@@ -36,7 +36,7 @@ public class PlayerController : IExecute
             _botController.Fire();
         }
         
-        _botController.Execute(ETypObject.Player);
+        _botController.Execute();
     }
 
     private void SpawnPlayer()

@@ -34,7 +34,7 @@ public class MoveController
         SetTargetEnemy();
     }
 
-    public void Execute(ETypObject eTypObject)
+    public void Execute(ETypObject eTypObject, ref bool isMove)
     {
         if (eTypObject == ETypObject.Enemy)
         {
@@ -45,6 +45,7 @@ public class MoveController
             }
             _ticMove--;
         }
+        isMove = _isMove;
         if (_isMove) Move();
     }
     public void MoveObject(EVectorMove vectorMove)

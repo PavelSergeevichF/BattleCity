@@ -32,7 +32,7 @@ public class EnemyController : IExecute
         
         foreach (var exe in _botControllers)
         {
-            exe.Execute(ETypObject.Enemy);
+            exe.Execute();
         }
     }
 
@@ -41,7 +41,7 @@ public class EnemyController : IExecute
         _spawnEnemyView.SetOrder();
         _spawnEnemyView.Spawn(_greedView, out _enemy);
         _enemyObjectView = _enemy.GetComponent<EnemyObjectView>();
-        BotController botController = new BotController(_greedView, _enemy, _enemyObjectView.Sprite, _enemyObjectView.Speed, _enemyObjectView.CentrSpawnView, _enemyObjectView.TimePauseShoot, _enemyObjectView.SpawnShell);
+        BotController botController = new BotController(ETypObject.Enemy, _greedView, _enemy, _enemyObjectView.Sprite, _enemyObjectView.Speed, _enemyObjectView.CentrSpawnView, _enemyObjectView.TimePauseShoot, _enemyObjectView.SpawnShell, _spawnEnemyView.AudioSourceView);
         _botControllers.Add(botController);
     }
     private void GetDamage(object value)

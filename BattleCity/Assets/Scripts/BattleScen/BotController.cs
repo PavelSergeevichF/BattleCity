@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class BotController
 {
-    private GreedView _greedView;
-    private GameObject _player;
-    private List<GameObject> _sprite;
     private float _speed;
     private bool _isCanFire = false;
+    private bool _isMove;
     private int _timePauseShoot;
     private int _setTimePauseShoot;
-
     private int _shellOrientationZ = 0;
+    private GameObject _spawnShell;
+    private GameObject _player;
+    private List<GameObject> _sprite;
+    private ETypObject _eTypObject;
+    private GreedView _greedView;
     private CentrSpawnView _centrSpawnView;
     private MoveController _moveController;
-    private GameObject _spawnShell;
+    private AudioSourceView _audioSourceView;
 
-    public BotController(GreedView greedView, GameObject player, List<GameObject> sprite, float speed, CentrSpawnView centrSpawnView, int timePauseShoot, GameObject spawnShell)
+    public BotController(ETypObject eTypObject, GreedView greedView, GameObject player, List<GameObject> sprite, float speed, CentrSpawnView centrSpawnView, int timePauseShoot, GameObject spawnShell, AudioSourceView audioSourceView)
     {
+        _eTypObject = eTypObject;
         _greedView = greedView;
         _player = player;
         _sprite = sprite;
@@ -26,27 +29,48 @@ public class BotController
         _centrSpawnView = centrSpawnView;
         _timePauseShoot = _setTimePauseShoot = timePauseShoot;
         _spawnShell = spawnShell;
+        _audioSourceView = audioSourceView;
         _moveController = new MoveController(_greedView, _player, _sprite, _speed);
         _moveController.TransleteVectorMove += Orientation;
     }
 
 
-    public void Execute(ETypObject eTypObject)
+    public void Execute()
     {
-        _moveController.Execute(eTypObject);
+        _moveController.Execute(_eTypObject, ref _isMove);
         if (!_isCanFire)
         {
             if (_timePauseShoot < 1)
             {
                 _isCanFire = true;
-                _timePauseShoot = eTypObject == ETypObject.Player ? _setTimePauseShoot : _setTimePauseShoot;
+                _timePauseShoot =  _setTimePauseShoot;
             }
             else
             {
                 _timePauseShoot--;
             }
         }
-        if (eTypObject == ETypObject.Enemy) Fire();
+        if (_eTypObject == ETypObject.Enemy) Fire();
+        else 
+        {
+            if (
+                !_audioSourceView.AudioStart.isPlaying &&
+                !_audioSourceView.AudioEngineGo.isPlaying &&
+                !_audioSourceView.AudioEngineStop.isPlaying 
+                )
+            {
+                if (_isMove)
+                {
+                    _audioSourceView.AudioEngineStop.Stop();
+                    _audioSourceView.AudioEngineGo.Play();
+                }
+                else
+                {
+                    _audioSourceView.AudioEngineStop.Play();
+                    _audioSourceView.AudioEngineGo.Stop();
+                }
+            }
+        }
     }
     public void Fire() 
     {
@@ -54,6 +78,10 @@ public class BotController
         {
             _isCanFire = false;
             SpawnShell();
+            if(_eTypObject == ETypObject.Player)
+            {
+                _audioSourceView.AudioShoot.Play();
+            }
         }
     }
     private void SpawnShell()

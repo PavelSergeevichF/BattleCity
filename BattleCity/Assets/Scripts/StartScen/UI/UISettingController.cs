@@ -24,7 +24,16 @@ public class UISettingController
     }
     private void SetVol()
     {
-        _uISettingView.SOPlayerData.SoundVolume = _uISettingView.SoundSlider.value;
-        _uISettingView.SOPlayerData.MusicVolume = _uISettingView.MusicSlider.value;
+        if(_uISettingView.SOPlayerData.SoundVolume != _uISettingView.SoundSlider.value)
+        {
+            _uISettingView.SOPlayerData.SoundVolume = _uISettingView.SoundSlider.value;
+            _uISettingView.AudioMixer.SetFloat("Sound", _uISettingView.SOPlayerData.SoundVolume);
+        }
+        if (_uISettingView.SOPlayerData.MusicVolume != _uISettingView.MusicSlider.value)
+        {
+            _uISettingView.SOPlayerData.MusicVolume = _uISettingView.MusicSlider.value;
+            _uISettingView.AudioMixer.SetFloat("Music", _uISettingView.SOPlayerData.MusicVolume);
+        }
+        
     }
 }

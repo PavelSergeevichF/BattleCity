@@ -7,6 +7,7 @@ public class SpawnEnemyView : MonoBehaviour
     [SerializeField] private List<GameObject> _playerObjects;
     [SerializeField] private int[] _numTyp = new int[4] {7,7,4,2 };
     [SerializeField] private int _time = 300;
+    [SerializeField] private AudioSourceView _audioSourceView;
 
     private Vector2Int _spawnPoint1 = new Vector2Int(1, 14);
     private Vector2Int _spawnPoint2 = new Vector2Int(7, 14);
@@ -18,6 +19,7 @@ public class SpawnEnemyView : MonoBehaviour
     public Vector2Int SpawnPoint1 => _spawnPoint1;
     public Vector2Int SpawnPoint2 => _spawnPoint2;
     public Vector2Int SpawnPoint3 => _spawnPoint3;
+    public AudioSourceView AudioSourceView => _audioSourceView;
 
     private GameObject _player2;
     public void SetOrder()
