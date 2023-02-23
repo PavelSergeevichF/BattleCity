@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 3134630312688155834, guid: c0afd0afa8127d14c885feaf3b4ed851, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -283,7 +283,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -8266719673619210636, guid: c0afd0afa8127d14c885feaf3b4ed851, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -365,7 +365,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 2826123533275347080, guid: c0afd0afa8127d14c885feaf3b4ed851, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -562,18 +562,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0fd8945334f8e45a8b3900ae793e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bumperUp: {fileID: 0}
-  _bumperRight: {fileID: 0}
-  _bumperDown: {fileID: 0}
-  _bumperLeft: {fileID: 0}
+  _bumper: {fileID: 4088708943211745512}
   _spawnShell: {fileID: 4122573374391605320}
   _centrSpawn: {fileID: 7904824628561954225}
-  _hp: 1
   _damage: 1
   _timePauseShoot: 120
   _eTypObject: 1
   _centrSpawnView: {fileID: 1925791475419106046}
-  Live: 1
+  _sOPlayerData: {fileID: 11400000, guid: 247e07eb3e788a9499d39133354f139b, type: 2}
   PosOnGreed: {x: 0, y: 0}
   Sprite:
   - {fileID: 7178937186478286303}
@@ -583,8 +579,10 @@ MonoBehaviour:
   EVectorMove: 0
   Speed: 120
   TanckObject: {fileID: 7178937185853972068}
+  HP: 4
   _eEnemyType: 3
   _score: 1
+  UIBattleView: {fileID: 0}
 --- !u!61 &7178937185853972075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -619,8 +617,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7178937185853972068}
-  m_BodyType: 0
-  m_Simulated: 0
+  m_BodyType: 1
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -833,7 +831,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -3330029362487171585, guid: c0afd0afa8127d14c885feaf3b4ed851, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1033,16 +1031,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b9f0372fba57a94d9a2563cf824eb95, type: 3}
---- !u!1 &4122573374391605320 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6385107392443253587, guid: 4b9f0372fba57a94d9a2563cf824eb95, type: 3}
-  m_PrefabInstance: {fileID: 7037481295543622427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1642020190811652320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8602868535251459067, guid: 4b9f0372fba57a94d9a2563cf824eb95, type: 3}
   m_PrefabInstance: {fileID: 7037481295543622427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4088708943211745512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6418795970448591859, guid: 4b9f0372fba57a94d9a2563cf824eb95, type: 3}
+  m_PrefabInstance: {fileID: 7037481295543622427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e69efe0ab474f4bb3a2f8a8103f50f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7904824628561954225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 871925835565932202, guid: 4b9f0372fba57a94d9a2563cf824eb95, type: 3}
@@ -1059,3 +1063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a0ae9312b754e478a9fafbe6ee6462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4122573374391605320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6385107392443253587, guid: 4b9f0372fba57a94d9a2563cf824eb95, type: 3}
+  m_PrefabInstance: {fileID: 7037481295543622427}
+  m_PrefabAsset: {fileID: 0}

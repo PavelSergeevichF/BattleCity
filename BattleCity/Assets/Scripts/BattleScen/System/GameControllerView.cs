@@ -8,6 +8,7 @@ public class GameControllerView : MonoBehaviour
     [SerializeField] private SpawnPlayerView _spawnPlayerView;
     [SerializeField] private SpawnEnemyView _spawnEnemyView;
     [SerializeField] private SOPlayerData _sOPlayerData;
+    [SerializeField] private JoysticView _joysticView;
 
     private Controllers _controllers;
 
@@ -16,6 +17,7 @@ public class GameControllerView : MonoBehaviour
     public SpawnPlayerView SpawnPlayerView => _spawnPlayerView;
     public SpawnEnemyView SpawnEnemyView => _spawnEnemyView;
     public SOPlayerData SOPlayerData => _sOPlayerData;
+    public JoysticView JoysticView=> _joysticView;
 
     private void Awake()
     {

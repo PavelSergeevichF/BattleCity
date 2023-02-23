@@ -1,63 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : IExecute
+public class EnemyController
 {
-    private GreedView _greedView;
-    private SpawnEnemyView _spawnEnemyView;
-    private GameObject _enemy;
-    private int _ticSpawn;
+    private int _idEnemy;
     private EnemyObjectView _enemyObjectView;
-    private List<MoveController> _moveControllers = new List<MoveController>();
-    private List<BotController> _botControllers = new List<BotController>();
+    private BotController _botController;
+    private AudioSourceView _audioSourceView;
+    public delegate void IsDeadDelegate(int value);
+    public event IsDeadDelegate TransleteDead;
 
-    public EnemyController(GreedView greedView, SpawnEnemyView spawnEnemyView)
+    public EnemyObjectView EnemyObjectView => _enemyObjectView;
+
+    public int ID => _idEnemy;
+    public bool IsActiv;
+
+    public EnemyController(GreedView greedView, GameObject enemy, EnemyObjectView enemyObjectView, AudioSourceView audioSourceView, int idEnemy)
     {
-        _greedView = greedView;
-        _spawnEnemyView = spawnEnemyView;
-        SpawnEnemy();
-        _ticSpawn=_spawnEnemyView.Time;
+        _enemyObjectView = enemyObjectView;
+        _audioSourceView = audioSourceView;
+        _idEnemy = idEnemy;
+        _botController = new BotController(ETypObject.Enemy, greedView, enemy, _enemyObjectView.Sprite, _enemyObjectView.Speed, _enemyObjectView.CentrSpawnView, _enemyObjectView.TimePauseShoot, _enemyObjectView.SpawnShell, audioSourceView);
         _enemyObjectView.TransleteDamage += GetDamage;
     }
 
     public void Execute()
     {
-        _ticSpawn--;
-        if(_ticSpawn<1)
-        {
-            _ticSpawn = _spawnEnemyView.Time;
-            SpawnEnemy();
-        }
-        
-        foreach (var exe in _botControllers)
-        {
-            exe.Execute();
-        }
+        _botController.Execute();
     }
 
-    private void SpawnEnemy()
-    {
-        _spawnEnemyView.SetOrder();
-        _spawnEnemyView.Spawn(_greedView, out _enemy);
-        _enemyObjectView = _enemy.GetComponent<EnemyObjectView>();
-        BotController botController = new BotController(ETypObject.Enemy, _greedView, _enemy, _enemyObjectView.Sprite, _enemyObjectView.Speed, _enemyObjectView.CentrSpawnView, _enemyObjectView.TimePauseShoot, _enemyObjectView.SpawnShell, _spawnEnemyView.AudioSourceView);
-        _botControllers.Add(botController);
-    }
+
     private void GetDamage(object value)
     {
-        if (_enemyObjectView.ETypObject == ETypObject.Enemy)
+        _enemyObjectView.HP--;
+        if (_enemyObjectView.HP < 1)
         {
-            DestroyPlayerObject();
+            GetDead();
         }
-
+        else 
+        {
+            _audioSourceView.AudioDamage.Play();
+        }
     }
-    private void DestroyPlayerObject()
+    public void GetDead()
     {
-        _enemyObjectView.Live--;
-        if (_enemyObjectView.Live < 1)
-        {
-            //добавить гаймовер
-        }
+        TransleteDead?.Invoke(ID);
     }
 }

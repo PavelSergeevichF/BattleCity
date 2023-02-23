@@ -12,6 +12,7 @@ public class UIScenLoading : MonoBehaviour
 
     private void Awake()
     {
+        _sOPlayerData.Live = 2;
         StartCoroutine(AsyncLoad());
     }
 

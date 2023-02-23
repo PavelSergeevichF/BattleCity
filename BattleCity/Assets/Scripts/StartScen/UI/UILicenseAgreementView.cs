@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class UILicenseAgreementView : MonoBehaviour
 {
+    [SerializeField] private bool _reset=false;
     [SerializeField] private Toggle _toggleAgreement;
     [SerializeField] private Button _buttonNext;
     [SerializeField] private Button _buttonExit;
@@ -15,7 +16,7 @@ public class UILicenseAgreementView : MonoBehaviour
 
     private void Awake()
     {
-        if(!_sOPlayerData.AceptLicensi)
+        if(PlayerPrefs.GetInt("_bool")!=1)
         {
             _panelleAgreement.SetActive(true);
             _panelleBlocked.SetActive(true);
@@ -27,14 +28,19 @@ public class UILicenseAgreementView : MonoBehaviour
 
     private void Update()
     {
+        if (_reset)
+        {
+            PlayerPrefs.SetInt("_bool", 0);
+            _reset = false;
+        }
         if(_toggleAgreement.isOn)
         {
             _panelleBlocked.SetActive(false);
+            PlayerPrefs.SetInt("_bool", 1);
         }
     }
     private void ClosePanel()
     {
-        _sOPlayerData.AceptLicensi = true;
         _panelleAgreement.SetActive(false);
     }
     private void ExitGame()

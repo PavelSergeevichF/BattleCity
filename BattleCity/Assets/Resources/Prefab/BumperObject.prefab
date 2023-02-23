@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4967921358669673467}
   - component: {fileID: 8537623483528170001}
   - component: {fileID: 5748620590415548308}
-  - component: {fileID: 4119200454517961225}
   m_Layer: 11
   m_Name: BumperObject
   m_TagString: Untagged
@@ -62,7 +61,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.78, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &5748620590415548308
 MonoBehaviour:
@@ -78,24 +77,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eVectorMove: 0
   _obstacle: 0
---- !u!50 &4119200454517961225
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616628639171827809}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

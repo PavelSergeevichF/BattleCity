@@ -8,12 +8,15 @@ public class MoveController
 
     private Vector3 _target;
     private Vector3 _maxMove, _minMove;
+    private Vector3 _moveVector;
     private bool _isMove = false;
     private int _step = 50;
     private int _ticMove;
     private EVectorMove _eVectorMoveEnemy;
+    private ETypObject _eTypObject;
 
     private float _speed;
+    private float _force=100;
     private List<GameObject> _sprite;
 
     private GreedView _greedView;
@@ -36,6 +39,7 @@ public class MoveController
 
     public void Execute(ETypObject eTypObject, ref bool isMove)
     {
+        _eTypObject = eTypObject;
         if (eTypObject == ETypObject.Enemy)
         {
             MoveEnemy(_eVectorMoveEnemy);
@@ -50,28 +54,25 @@ public class MoveController
     }
     public void MoveObject(EVectorMove vectorMove)
     {
-        if (!_isMove)
+        switch (vectorMove)
         {
-            switch (vectorMove)
-            {
-                case EVectorMove.Up:
-                    if (_moveObject.transform.position.y + 1f < _maxMove.y) SetVector(0, _step);
-                    ClearSprite(); _sprite[0].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
-                    break;
-                case EVectorMove.Down:
-                    if (_moveObject.transform.position.y - 1f > _minMove.y) SetVector(0, -_step);
-                    ClearSprite(); _sprite[2].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
-                    break;
-                case EVectorMove.Left:
-                    if (_moveObject.transform.position.x - 1f > _minMove.x) SetVector(-_step, 0);
-                    ClearSprite(); _sprite[3].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
-                    break;
-                case EVectorMove.Right:
-                    if (_moveObject.transform.position.x + 1f < _maxMove.x) SetVector(_step, 0);
-                    ClearSprite(); _sprite[1].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
-                    break;
-            };
-        }
+            case EVectorMove.Up:
+                if (_moveObject.transform.position.y + 1f < _maxMove.y) SetVector(0, _step);
+                ClearSprite(); _sprite[0].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                break;
+            case EVectorMove.Down:
+                if (_moveObject.transform.position.y - 1f > _minMove.y) SetVector(0, -_step);
+                ClearSprite(); _sprite[2].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                break;
+            case EVectorMove.Left:
+                if (_moveObject.transform.position.x - 1f > _minMove.x) SetVector(-_step, 0);
+                ClearSprite(); _sprite[3].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                break;
+            case EVectorMove.Right:
+                if (_moveObject.transform.position.x + 1f < _maxMove.x) SetVector(_step, 0);
+                ClearSprite(); _sprite[1].SetActive(true); _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                break;
+        };
     }
     
     public void MoveEnemy(EVectorMove vectorMove)
@@ -105,21 +106,37 @@ public class MoveController
     }
     private void SetVector(int x, int y)
     {
-        _target = new Vector3
-                            (
-                            _moveObject.transform.position.x + x,
-                            _moveObject.transform.position.y + y,
-                            0);
-        _isMove = true;
+        if (!_moveObject.GetComponent<TanckObjectView>().Bumper.Obstacle)
+        {
+            _target = new Vector3
+                           (
+                           _moveObject.transform.position.x + x,
+                           _moveObject.transform.position.y + y,
+                           0);
+            if (_target.x > _maxMove.x) _target.x = _maxMove.x;
+            if (_target.y > _maxMove.y) _target.y = _maxMove.y;
+            if (_target.x < _minMove.x) _target.x = _minMove.x;
+            if (_target.y < _minMove.y) _target.y = _minMove.y;
+            _isMove = true;
+        } 
+    }
+
+    public void ResetTarget()
+    {
+        SetVector(0,0);
     }
     private void Move()
     {
-        _moveObject.transform.position = Vector3.MoveTowards(_moveObject.transform.position, _target, Time.deltaTime * _speed);
-        if (CheckFinish(_moveObject.transform.position, _target))
+        if(!_moveObject.GetComponent<TanckObjectView>().Bumper.Obstacle)
         {
-            _isMove = false;
-            _moveObject.transform.position = _target;
+            _moveObject.transform.position = Vector3.MoveTowards(_moveObject.transform.position, _target, Time.deltaTime * _speed);
+            if (CheckFinish(_moveObject.transform.position, _target))
+            {
+                _isMove = false;
+                _moveObject.transform.position = _target;
+            }
         }
+        
     }
     private bool CheckFinish(Vector3 pos, Vector3 target)
     {
