@@ -65,18 +65,13 @@ public class Login : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-        Debug.Log("OnCreatedRoom");
     }
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        Debug.Log("OnJoinedRoom");
         PhotonNetwork.LoadLevel(3);
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("OnPlayerEnteredRoom");
-        Debug.Log(newPlayer.NickName);
-        Debug.Log(PhotonNetwork.CurrentRoom.Name);
     }
 }

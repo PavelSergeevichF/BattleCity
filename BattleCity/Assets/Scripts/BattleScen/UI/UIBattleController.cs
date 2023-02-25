@@ -33,7 +33,6 @@ public class UIBattleController : IExecute
         _uIBattleView.LevelEndNext.onClick.AddListener(ButtonNextInScorWindow);
         _uIBattleView.GameEndNext.onClick.AddListener(ButtonNextInGameOverWindow);
         _uIBattleView.FireButton.onClick.AddListener(ButtonFire);
-        //_uIBattleView.UIButtonFireView.FireButton.GetComponent<UIButtonFireView>().onPressedOverSeconds.AddListener(ButtonFire);
         foreach (var text in _uIBattleView.ScoreType)
         {
             text.text = "0";

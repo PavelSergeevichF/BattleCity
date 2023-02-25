@@ -20,6 +20,9 @@ public class UISettingController
     {
         _uISettingView.SOPlayerData.UserName = "";
         _uISettingView.SOPlayerData.Password = "";
+
+        PlayerPrefs.SetString("Name", _uISettingView.SOPlayerData.UserName);
+        PlayerPrefs.SetString("Password", _uISettingView.SOPlayerData.Password);
         Exit();
         _uISettingView.UIStartScenView.PanelRegOrLogin.SetActive(true);
     }

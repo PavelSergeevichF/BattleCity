@@ -51,6 +51,8 @@ public class UIStartScenView : MonoBehaviour
     private void Awake()
     {
         _uIStartScenController = new UIStartScenController(this);
+        SOPlayerData.UserName = PlayerPrefs.GetString("Name");
+        SOPlayerData.Password = PlayerPrefs.GetString("Password");
     }
     private void Update() => _uIStartScenController.Update();
 }

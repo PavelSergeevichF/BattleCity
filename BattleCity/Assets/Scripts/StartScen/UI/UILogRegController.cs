@@ -153,6 +153,8 @@ public class UILogRegController
     {
         _uIStartScenView.SOPlayerData.UserName = _name;
         _uIStartScenView.SOPlayerData.Password= _password;
+        PlayerPrefs.SetString("Name", _name);
+        PlayerPrefs.SetString("Password", _password);
         string errorStr = "";
         var request = new LoginWithCustomIDRequest
         {

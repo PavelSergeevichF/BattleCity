@@ -24,7 +24,5 @@ internal sealed class GameInit
 
     private void InitSingleton(Controllers controllers)
     {
-        //controllers.Add(SoundManager.Instance);
-        //controllers.Add(Singleton<SingletonManager>.Instance);
     }
 }
