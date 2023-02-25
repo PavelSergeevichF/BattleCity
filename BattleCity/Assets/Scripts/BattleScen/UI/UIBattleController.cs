@@ -180,6 +180,7 @@ public class UIBattleController : IExecute
     {
         TransleteFire?.Invoke();
     }
+    
     private void SelectWindow(EStatusLevel eStatusLevel)
     {
         _uIBattleView.BttleField.SetActive(false);

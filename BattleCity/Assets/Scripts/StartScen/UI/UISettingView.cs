@@ -10,6 +10,7 @@ public class UISettingView : MonoBehaviour
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private GameObject _panelSetting;
     [SerializeField] private SOPlayerData _sOPlayerData;
+    [SerializeField] private UIStartScenView _uIStartScenView;
     [SerializeField] private AudioMixer _audioMixer;
 
     private UISettingController _uISettingController;
@@ -20,6 +21,7 @@ public class UISettingView : MonoBehaviour
     public Slider MusicSlider => _musicSlider;
     public GameObject PanelSetting => _panelSetting;
     public SOPlayerData SOPlayerData => _sOPlayerData;
+    public UIStartScenView UIStartScenView => _uIStartScenView;
     public AudioMixer AudioMixer=> _audioMixer;
 
 

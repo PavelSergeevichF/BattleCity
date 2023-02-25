@@ -17,7 +17,12 @@ public class UISettingController
         SetVol();
     }
     private void LogOutAccount()
-    { }
+    {
+        _uISettingView.SOPlayerData.UserName = "";
+        _uISettingView.SOPlayerData.Password = "";
+        Exit();
+        _uISettingView.UIStartScenView.PanelRegOrLogin.SetActive(true);
+    }
     private void Exit()
     {
         _uISettingView.PanelSetting.SetActive(false);

@@ -42,7 +42,8 @@ public class SpawnPlayerView : MonoBehaviourPunCallbacks
         }
         else 
         {
-            Player = PhotonNetwork.Instantiate(_playerObject.name, spawnPos, Quaternion.identity);
+            string path = $"Prefab/Player/{_playerObject.name}";
+            Player = PhotonNetwork.Instantiate(path, spawnPos, Quaternion.identity);
         }
         Player.GetComponent<TanckObjectView>().PosOnGreed = new Vector2Int(pointSpawn.x - 1, pointSpawn.y - 1);
         Player.GetComponent<TanckObjectView>().Sprite[0].SetActive(true);

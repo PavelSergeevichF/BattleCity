@@ -1339,6 +1339,7 @@ MonoBehaviour:
   _musicSlider: {fileID: 824603951}
   _panelSetting: {fileID: 258834344}
   _sOPlayerData: {fileID: 11400000, guid: 247e07eb3e788a9499d39133354f139b, type: 2}
+  _uIStartScenView: {fileID: 695896970}
   _audioMixer: {fileID: 24100000, guid: 6d9e9bb0660a9a248981d0e24d3a020d, type: 2}
 --- !u!1 &259370942
 GameObject:
