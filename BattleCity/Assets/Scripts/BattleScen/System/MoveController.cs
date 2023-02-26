@@ -34,6 +34,15 @@ public class MoveController
         _sprite = sprite;
         _maxMove = new Vector3(925, 1300, 0);
         _minMove = new Vector3(-1475, -1300, 0);
+        if (_moveObject.GetComponent<EnemyObjectView>())
+        {
+            _sprite[2].SetActive(true);
+        }
+        else
+        {
+            _sprite[0].SetActive(true);
+        }
+        
         SetTargetEnemy();
     }
 
@@ -74,10 +83,38 @@ public class MoveController
                 break;
         };
     }
-    
+    public void MoveObjectV2(EVectorMove vectorMove)
+    {
+        int shellOrientationZ = 0;
+        switch (vectorMove)
+        {
+            case EVectorMove.Up:
+                if (_moveObject.transform.position.y + 1f < _maxMove.y) SetVector(0, _step);
+                _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                shellOrientationZ = 0;
+                break;
+            case EVectorMove.Down:
+                if (_moveObject.transform.position.y - 1f > _minMove.y) SetVector(0, -_step);
+                _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                shellOrientationZ = 180;
+                break;
+            case EVectorMove.Left:
+                if (_moveObject.transform.position.x - 1f > _minMove.x) SetVector(-_step, 0);
+                _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                shellOrientationZ = 90;
+                break;
+            case EVectorMove.Right:
+                if (_moveObject.transform.position.x + 1f < _maxMove.x) SetVector(_step, 0);
+                _moveObject.GetComponent<TanckObjectView>().EVectorMove = vectorMove;
+                shellOrientationZ = -90;
+                break;
+        };
+        _moveObject.transform.rotation = Quaternion.Euler(0, 0, shellOrientationZ);
+    }
+
     public void MoveEnemy(EVectorMove vectorMove)
     {
-        MoveObject(vectorMove);
+        MoveObjectV2(vectorMove);
     }
     private void SetTargetEnemy()
     {

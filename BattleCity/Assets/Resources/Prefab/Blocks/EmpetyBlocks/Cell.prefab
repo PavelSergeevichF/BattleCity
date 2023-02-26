@@ -321,6 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 586093385315752228}
   - component: {fileID: 7430765858523227070}
+  - component: {fileID: 4740148739152608684}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -377,6 +378,28 @@ MonoBehaviour:
   _forest: {fileID: 586093384870592632}
   _ice: {fileID: 586093385670542219}
   _headquarters: {fileID: 3340700398439693200}
+--- !u!114 &4740148739152608684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586093385315752227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &586093385407544770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,14 +2024,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df143ae3ed417a046a87e171dbe0c820, type: 3}
---- !u!4 &5833256951634554760 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9132618444791813959, guid: df143ae3ed417a046a87e171dbe0c820, type: 3}
-  m_PrefabInstance: {fileID: 3336727914824497359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2036430729173282399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3606445046409090704, guid: df143ae3ed417a046a87e171dbe0c820, type: 3}
+  m_PrefabInstance: {fileID: 3336727914824497359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5833256951634554760 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9132618444791813959, guid: df143ae3ed417a046a87e171dbe0c820, type: 3}
   m_PrefabInstance: {fileID: 3336727914824497359}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4716158707286518217

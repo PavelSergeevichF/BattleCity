@@ -57,7 +57,7 @@ public class BotController
     public void Fire() => _fireController.Fire();
     public void Orientation(EVectorMove orientation)
     {
-        _moveController.MoveObject(orientation);
+        _moveController.MoveObjectV2(orientation);
         _fireController.Orientation(orientation);
     }
     public void ClearSprite()

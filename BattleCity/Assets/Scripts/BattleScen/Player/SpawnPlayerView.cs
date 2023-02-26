@@ -5,6 +5,7 @@ public class SpawnPlayerView : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _playerObject;
     [SerializeField] private AudioSourceView _audioSourceView;
+    [SerializeField] private bool _isBusy = false;
 
     private Vector2Int _spawnPointPlayer1 = new Vector2Int(5,1);
     private Vector2Int _spawnPointPlayer2 = new Vector2Int(9, 1);
@@ -16,6 +17,19 @@ public class SpawnPlayerView : MonoBehaviourPunCallbacks
     public SOPlayerData SOPlayerData;
 
     private GameObject _player2;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _isBusy = true;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        _isBusy = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _isBusy = false;
+    }
     public void Spawn(int point, GreedView greed)
     {
         Vector2Int pointSpawn = point==1 ? _spawnPointPlayer1 : _spawnPointPlayer2;
@@ -25,7 +39,7 @@ public class SpawnPlayerView : MonoBehaviourPunCallbacks
         }
         else
         { 
-            if(SOPlayerData.StartPos1)
+            if(!_isBusy)
             { pointSpawn = _spawnPointPlayer1; }
             else 
             { pointSpawn = _spawnPointPlayer2; }

@@ -81,6 +81,5 @@ public class FireController
                 _shellOrientationZ = -90;
                 break;
         };
-        _spawnShell.transform.rotation = Quaternion.Euler(0, 0, _shellOrientationZ);
     }
 }

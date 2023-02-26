@@ -96,7 +96,6 @@ public class PlayerController : IFixedExecute
                 0
                 );
             _player.transform.position = spawnPos;
-            _botController.ClearSprite();
             _botController.DestroyObject(_playerObjectType);
             _playerView.Sprite[0].SetActive(true);
         }
